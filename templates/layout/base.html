@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanul's Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1A1B2D;
+            color: #EDEDED;
+            font-family: "Poppins", sans-serif;
+            overflow-x: hidden;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+            background-color: #14151D;
+            padding: 0 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        nav .left {
+            font-size: 1rem;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+            position: relative;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #EDEDED;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #AD65F0;
+        }
+
+        nav ul li .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #2C2D3F;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        nav ul li .dropdown-content a {
+            color: #EDEDED;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        nav ul li .dropdown-content a:hover {
+            background-color: #14151D;
+        }
+
+        nav ul li:hover .dropdown-content {
+            display: block;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle .bar {
+            background-color: #EDEDED;
+            height: 3px;
+            width: 25px;
+            margin: 4px 0;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 80px;
+                right: 0;
+                background-color: #14151D;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+                text-align: center;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+        }
+
+        .name-color {
+            color: #AD65F0;
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            background: linear-gradient(135deg, #2C2D3F 0%, #1A1B2D 100%);
+            position: relative;
+        }
+
+        .hero img {
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .hero-content {
+            z-index: 2;
+            max-width: 100%;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            color: #EDEDED;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            margin: 15px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 30px;
+            margin-top: 30px;
+            background-color: #AD65F0;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #9a4bdc;
+        }
+
+        .purple {
+            color: #AD65F0;
+        }
+
+        section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .highlight,
+        .background {
+            font-size: 20px;
+        }
+
+        .about,
+        .skills,
+        .projects,
+        .experience,
+        .contact {
+            background-color: #2C2D3F;
+            border-radius: 10px;
+            margin: 30px 0;
+            padding: 30px;
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            margin-bottom: 30px;
+            color: #AD65F0;
+        }
+
+        .mefont {
+            font-size: 22px;
+        }
+
+        .name-colour {
+            color: #9a4bdc;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .skill {
+            background-color: #AD65F0;
+            color: #fff;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .skill:hover {
+            background-color: #9a4bdc;
+        }
+
+        .project-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .project-card {
+            background-color: #14151D;
+            color: #fff;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .timeline-item {
+            background-color: #14151D;
+            color: #fff;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            text-align: left;
+            position: relative;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: -10px;
+            width: 20px;
+            height: 20px;
+            background-color: #AD65F0;
+            border-radius: 50%;
+        }
+
+        .timeline-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #AD65F0;
+        }
+
+        .timeline-item p {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .contact form {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .contact input,
+        .contact textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #AD65F0;
+            background-color: #14151D;
+            color: #EDEDED;
+        }
+
+        .contact button {
+            padding: 10px 30px;
+            background-color: #AD65F0;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact button:hover {
+            background-color: #9a4bdc;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #14151D;
+            margin-top: 30px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+            color: #AD65F0;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .social-links a {
+            margin: 0 10px;
+            color: #EDEDED;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #AD65F0;
+        }
+
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="left">
+            <h1>Tanul's Portfolio</h1>
+        </div>
+        <div class="menu-toggle" id="menu-toggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul id="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <img src="c:\Users\TANUL\Documents\cv.jpg" alt="Tanul's Image">
+        <div class="hero-content">
+            <h1>Hello,I am <span class="name-color"> Tanul </span>,<br>& I am a passionate</h1>
+            <h2> <span id="typed-text"></span></h2>
+            <a href="#contact" class="btn"> Contact Me</a>
+        </div>
+    </section>
+
+    <!-- Content Sections -->
+    <section id="about" class="about">
+        <h2>About Me</h2>
+        <p class="highlight">I am Tanul from Lucknow, Uttar Pradesh. Currently i am pursuing Bachelor of Computer Application From Sri Sharda Group of institutions. As a fresher, I am eager to begin my career and contribute my skills to dynamic companies. I am
+            proficient in Django Web development. I also have experience with
+            DATA ANALYTICS , and I am skilled in SQL for database management. I am passionate about
+            learning and applying the latest technologies to solve real-world problems and am ready to take on
+            challenges in a professional environment.</p>
+        <br>
+        <p class="background"> I come from a
+            close-knit family where my father, Kamlesh Chandra , is a Army man , and my mother Shiv rani 
+            is the backbone of our home. With one brother , I am the eldest, nurtured with immense care
+            and love. Growing up in such a warm and supportive environment has instilled in me the values of hard work,
+            empathy, and resilience. This strong foundation motivates me to pursue my dreams and make a meaningful
+            impact in the world.</p>
+    </section>
+
+    <section id="skills" class="skills">
+        <h2>Skills</h2>
+        <div class="skills-list">
+            <div class="skill">Python</div>
+            <div class="skill">Web developmrnt</div>
+            <div class="skill">Advance excel</div>
+            <div class="skill">Django</div>
+            <div class="skill">communication skill</div>
+            <!-- Add more skills here -->
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2>Projects</h2>
+        <div class="project-gallery">
+            <div class="project-card">
+                <img src="" alt="Project Image">
+                <h3>Project Title</h3>
+                <p>Project description goes here.</p>
+            </div>
+            <!-- Add more project cards here -->
+        </div>
+    </section>
+
+
+
+    <section id="contact" class="contact">
+        <h2>Contact</h2>
+        <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; Tanul yadav</p>
+        <div class="social-links">
+            <a href="https://www.instagram.com/yourprofile" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://x.com/yourprofile" target="_blank"><i class="fab fa-x"></i></a>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu Toggle -->
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+    </script>
+
+    <!-- JavaScript for Typed.js -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
+    <script>
+        var typed = new Typed('#typed-text', {
+            strings: ['Python Developer.',  'NumPy.', 'Pandas.','SQL.', ],
+            typeSpeed: 50,
+            backSpeed: 25,
+            backDelay: 1000,
+            startDelay: 500,
+            loop: true
+        });
+    </script>
+</body>
+
+</html>
