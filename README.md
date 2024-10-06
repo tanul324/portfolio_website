@@ -4,3 +4,4 @@ Screenshot of my project i have added to the reposetryy
 in this portfolio with django i have added html and css too 
 this also include admin panel too
 and also i have uploded my projects with images 
+![Screenshot (10)](https://github.com/user-attachments/assets/6e490c35-7dfc-414a-b7fa-31c919316778)
