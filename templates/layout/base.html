@@ -409,7 +409,9 @@
     </nav>
 
     <section id="home" class="hero">
-        <img src="c:\Users\TANUL\Documents\cv.jpg" alt="Tanul's Image">
+        {% load static %}
+        <!-- <img src="static\assets\images\cv.jpg" alt="Tanul's Image"> -->
+        <img src="media\About me\cv.jpg" alt="CV">
         <div class="hero-content">
             <h1>Hello,I am <span class="name-color"> Tanul </span>,<br>& I am a passionate</h1>
             <h2> <span id="typed-text"></span></h2>
@@ -450,9 +452,19 @@
         <h2>Projects</h2>
         <div class="project-gallery">
             <div class="project-card">
-                <img src="" alt="Project Image">
-                <h3>Project Title</h3>
-                <p>Project description goes here.</p>
+                <img src="media\About me\Screenshot (8).png" alt="Project Image">
+                <h3>Sasti Dukan Website</h3>
+                <p>This is e-commerce website where we have shown all web development skills like we had made coustomer login , seller login , 
+                admin login where we can add our products , users ,categories  etc and like this only we had made this website this is a example of 
+            e-commerce website like flipcart, Amazon , myntra etc...... </p>
+            </div>
+            <div class="project-card">
+                <img src= "media\About me\Screenshot (9).png" alt="Project Image">
+                <h4> Travel Blog </h4>
+                <p>Travel Blog is a website where we have created login and register page evenly we have added diffrent diffrent articles
+                    of diffrent places . also we have added ,delete and edit buttun on articles . in this project we have used django skills plus css and html language
+
+                </p>
             </div>
             <!-- Add more project cards here -->
         </div>
@@ -460,14 +472,26 @@
 
 
 
-    <section id="contact" class="contact">
-        <h2>Contact</h2>
-        <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
+    <section id="contact" class="py-5">
+        <div class="container">
+            <h2>Contact Me</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-20">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name">
+                </div>
+                <div class="mb-20">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email">
+                </div>
+                <div class="mt-5">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
     </section>
 
     <footer>
